@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements - Zheqing (Bill) Zhu</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .logo:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .hero {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        main {
+            padding: 3rem 0;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .achievement-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .achievement-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        
+        .achievement-title {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .achievement-date {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+        
+        .achievement-description {
+            margin-top: 0.5rem;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 200px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--secondary-color);
+            font-size: 1rem;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin: 2rem 0;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0;
+                height: 92vh;
+                top: 8vh;
+                background-color: var(--secondary-color);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 50%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+                z-index: 1;
+            }
+            
+            .nav-links li {
+                opacity: 0;
+                margin: 1.5rem 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-active {
+                transform: translateX(0%);
+            }
+            
+            @keyframes navLinkFade {
+                from {
+                    opacity: 0;
+                    transform: translateX(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0px);
+                }
+            }
+            
+            .toggle .line1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .toggle .line2 {
+                opacity: 0;
+            }
+            
+            .toggle .line3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Bill Zhu</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="achievements.html" class="active">Achievements</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Achievements</h1>
+            <p>Highlighting my professional journey, key projects, and recognitions</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number" id="yearsExperience">7+</div>
+                <div class="stat-label">Years at Meta AI</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="fundingAmount">$12M</div>
+                <div class="stat-label">Seed Funding for Pokee AI</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="awards">5+</div>
+                <div class="stat-label">Professional Awards</div>
+            </div>
+        </div>
+
+        <section class="section" id="professional">
+            <h2>Professional Achievements</h2>
+            <div class="achievement-item">
+                <div class="achievement-title">
+                    <span>Pokee AI</span>
+                    <span class="achievement-date">2024 – Present</span>
+                </div>
+                <div class="achievement-description">
+                    <p>Founded Pokee AI to develop next-generation AI agents for automating human workflows. As CEO, he leads the development of interactive, personalized, and efficient AI agents for reasoning, planning, and tool usage. Pokee AI has secured $12 million in seed funding and established a strategic partnership with Google.</p>
+                    <button class="btn" id="pokeeDetails">Learn More</button>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-title">
+                    <span>Meta AI</span>
+                    <span class="achievement-date">2017 – 2024</span>
+                </div>
+                <div class="achievement-description">
+                    <p>Advanced from Machine Learning Engineer to Senior Staff Research Lead Manager and Head of Applied Reinforcement Learning. He led the team that developed and launched "Pearl," a production-ready, open-source reinforcement learning platform. His work significantly enhanced Meta's monetization and user engagement, generating substantial revenue and onboarding millions of advertisers.</p>
+                    <button class="btn" id="metaDetails">Learn More</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <h2>Key Projects</h2>
+            <div class="achievement-item">
+                <div class="achievement-title">
+                    <span>Pearl Reinforcement Learning Platform</span>
+                </div>
+                <div class="achievement-description">
+                    <p>Led the development of "Pearl" at Meta, a production-ready reinforcement learning platform that bridged theoretical concepts with practical, scalable solutions.</p>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-title">
+                    <span>Recommender Systems and Ad Auction Optimization</span>
+                </div>
+                <div class="achievement-description">
+                    <p>Was instrumental in developing and deploying reinforcement learning techniques across various applications at Meta, including recommender systems and ad auction optimization.</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="projectImpactChart"></canvas>
+            </div>
+        </section>
+
+        <section class="section" id="awards">
+            <h2>Honors and Awards</h2>
+            <div class="achievement-item">
+                <div class="achievement-title">
+                    <span>Meta AI</span>
+                </div>
+                <div class="achievement-description">
+                    <p>Received multiple accolades, including the CMO's Highlight Launch List in 2021 and several "Win of Month" and "Win of Quarter" awards for his contributions to Ads Growth.</p>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-title">
+                    <span>Duke University</span>
+                </div>
+                <div class="achievement-description">
+                    <p>Graduated summa cum laude and received the Alex Vasilos Memorial Award and the Highest Distinction Graduate Award.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Zheqing (Bill) Zhu. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation
+        const navSlide = () => {
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
+            
+            hamburger.addEventListener('click', () => {
+                // Toggle Nav
+                nav.classList.toggle('nav-active');
+                
+                // Animate Links
+                navLinks.forEach((link, index) => {
+                    if (link.style.animation) {
+                        link.style.animation = '';
+                    } else {
+                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                    }
+                });
+                
+                // Hamburger Animation
+                hamburger.classList.toggle('toggle');
+            });
+        };
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Simple chart for project impact
+        const drawChart = () => {
+            const ctx = document.getElementById('projectImpactChart').getContext('2d');
+            
+            // Simple bar chart using canvas
+            const data = {
+                labels: ['User Engagement', 'Revenue Growth', 'Advertiser Onboarding', 'System Efficiency'],
+                values: [85, 92, 78, 88]
+            };
+            
+            const barWidth = ctx.canvas.width / (data.labels.length * 2);
+            const maxValue = Math.max(...data.values);
+            const barHeightMultiplier = (ctx.canvas.height - 60) / maxValue;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            
+            // Draw bars
+            data.labels.forEach((label, index) => {
+                const x = index * (barWidth * 2) + barWidth / 2;
+                const barHeight = data.values[index] * barHeightMultiplier;
+                const y = ctx.canvas.height - barHeight - 30;
+                
+                // Draw bar
+                ctx.fillStyle = '#3498db';
+                ctx.fillRect(x, y, barWidth, barHeight);
+                
+                // Draw label
+                ctx.fillStyle = '#2c3e50';
+                ctx.font = '12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(label, x + barWidth / 2, ctx.canvas.height - 10);
+                
+                // Draw value
+                ctx.fillStyle = '#2c3e50';
+                ctx.font = 'bold 14px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(data.values[index] + '%', x + barWidth / 2, y - 5);
+            });
+        };
+        
+        // Button event listeners
+        document.getElementById('pokeeDetails').addEventListener('click', function() {
+            alert('Pokee AI is developing cutting-edge AI agents that can automate complex workflows through reasoning, planning, and tool usage capabilities.');
+        });
+        
+        document.getElementById('metaDetails').addEventListener('click', function() {
+            alert('At Meta, Bill led the Applied Reinforcement Learning team, developing systems that significantly improved ad performance and user engagement metrics across the platform.');
+        });
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            navSlide();
+            
+            // Make chart responsive
+            const resizeChart = () => {
+                const canvas = document.getElementById('projectImpactChart');
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = 300;
+                drawChart();
+            };
+            
+            window.addEventListener('resize', resizeChart);
+            resizeChart();
+            
+            // Counter animation for stats
+            const animateCounter = (element, target, duration = 2000) => {
+                let start = 0;
+                const increment = target > 100 ? 1000 : 1;
+                const stepTime = Math.abs(Math.floor(duration / (target / increment)));
+                
+                const timer = setInterval(() => {
+                    start += increment;
+                    if (target > 100) {
+                        element.textContent = '$' + start / 1000 + 'M';
+                    } else {
+                        element.textContent = start + '+';
+                    }
+                    if (start >= target) {
+                        clearInterval(timer);
+                        if (target > 100) {
+                            element.textContent = '$' + target / 1000 + 'M';
+                        } else {
+                            element.textContent = target + '+';
+                        }
+                    }
+                }, stepTime);
+            };
+            
+            // Animate stats when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.id === 'yearsExperience') {
+                            animateCounter(entry.target, 7);
+                        } else if (entry.target.id === 'fundingAmount') {
+                            animateCounter(entry.target, 12000);
+                        } else if (entry.target.id === 'awards') {
+                            animateCounter(entry.target, 5);
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('.stat-number').forEach(stat => {
+                observer.observe(stat);
+            });
+        });
+    </script>
+</body>
+</html>
