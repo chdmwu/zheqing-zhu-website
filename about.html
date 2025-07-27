@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Zheqing (Bill) Zhu</title>
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #334e68;
+            --accent: #63b3ed;
+            --light: #f8f9fa;
+            --dark: #2d3748;
+            --text: #333;
+            --bg: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .logo:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a.active {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+        }
+        
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+        
+        .hero {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--light);
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: var(--light);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent);
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -10px;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content .date {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            transform: scale(1.05);
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin: 2rem 0;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark);
+                padding: 1rem 0;
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 15px;
+            }
+            
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Zheqing (Bill) Zhu</a>
+                <button class="hamburger" id="hamburger">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="achievements.html">Achievements</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="hero">
+                <h1>About Zheqing (Bill) Zhu</h1>
+                <p>AI Researcher, Entrepreneur, and Innovator</p>
+            </div>
+
+            <section class="section">
+                <h2>Introduction</h2>
+                <p>Welcome to my journey in the world of Artificial Intelligence. I am Zheqing Zhu, also known as Bill, and I have dedicated my career to advancing the field of AI, particularly in reinforcement learning. My passion lies in bridging the gap between theoretical advancements and practical applications, creating AI systems that can make a meaningful impact in the real world.</p>
+                <p>Throughout my career, I've been driven by the belief that reinforcement learning holds the key to developing truly intelligent systems capable of reasoning, planning, and adapting to complex environments. This passion has guided my academic research, professional work, and now my entrepreneurial venture.</p>
+            </section>
+
+            <section class="section">
+                <h2>Academic Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Ph.D. in Computer Science</h3>
+                            <p class="date">Stanford University</p>
+                            <p>Under the guidance of Professor Benjamin Van Roy, my doctoral research focused on reinforcement learning theory and applications. I worked on developing algorithms that could bridge the gap between theoretical reinforcement learning and real-world applications.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>Master's in Computer Science</h3>
+                            <p class="date">Stanford University</p>
+                            <p>Continued my specialization in machine learning and artificial intelligence, with a focus on reinforcement learning methodologies and their practical implementations.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Bachelor of Science in Computer Science</h3>
+                            <p class="date">Duke University</p>
+                            <p>Graduated summa cum laude with a Minor in Finance. Received the prestigious Alex Vasilos Memorial Award and the Highest Distinction Graduate Award for academic excellence and contributions to the field.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Professional Career</h2>
+                <div class="timeline">
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>Senior Staff Research Lead Manager</h3>
+                            <p class="date">Meta AI (2017-2024)</p>
+                            <p>Served as Head of Applied Reinforcement Learning, leading teams in developing cutting-edge AI solutions. My seven-year tenure at Meta AI saw me progress from a Machine Learning Engineer to a senior leadership position.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Pearl Development</h3>
+                            <p class="date">Meta AI</p>
+                            <p>Led the team that developed 'Pearl,' a production-ready reinforcement learning platform that has been instrumental in implementing RL solutions at scale across various applications within Meta.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills">
+                    <span class="skill-tag">Reinforcement Learning</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">AI Research</span>
+                    <span class="skill-tag">Team Leadership</span>
+                    <span class="skill-tag">Product Development</span>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Entrepreneurial Venture</h2>
+                <p>In 2024, I founded Pokee AI, where I currently serve as the Founder and CEO. Pokee AI is dedicated to developing next-generation AI agents that are interactive, personalized, and efficient in reasoning, planning, and tool usage.</p>
+                <p>Our mission is to create AI systems that can truly understand and adapt to human needs, making artificial intelligence more accessible and useful in everyday scenarios. We believe that by combining advanced reinforcement learning techniques with other AI methodologies, we can create agents that not only learn from data but also from their interactions with the world and humans.</p>
+                <div class="chart-container" id="chart"></div>
+                <a href="#" class="btn">Learn More About Pokee AI</a>
+            </section>
+
+            <section class="section">
+                <h2>Mission and Philosophy</h2>
+                <p>My vision has always been to bridge the gap between reinforcement learning theory and practical applications. I firmly believe that reinforcement learning is a critical component for the future of generative AI and decision-making systems.</p>
+                <p>In an era where AI is becoming increasingly integrated into our daily lives, I am committed to developing systems that are not only technically sophisticated but also ethically sound and aligned with human values. The goal is to create AI that enhances human capabilities rather than replacing them, fostering a collaborative relationship between humans and machines.</p>
+            </section>
+
+            <section class="section">
+                <h2>Community Involvement</h2>
+                <p>I am deeply committed to advancing the field of AI through community engagement and knowledge sharing. Some of my contributions include:</p>
+                <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+                    <li>Workshop Chair for the AAAI 2023 Reinforcement Learning Ready for Production Workshop</li>
+                    <li>Reviewer for prestigious conferences including NeurIPS and AAAI</li>
+                    <li>Mentor for aspiring AI researchers and practitioners</li>
+                    <li>Speaker at various industry conferences and academic events</li>
+                </ul>
+                <p>I believe that collaboration and open exchange of ideas are essential for the advancement of AI research and its responsible implementation in society.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Zheqing (Bill) Zhu. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                <a href="#" aria-label="Twitter">Twitter</a>
+                <a href="#" aria-label="GitHub">GitHub</a>
+                <a href="#" aria-label="Email">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('show');
+        });
+
+        // Simple chart for visualization
+        document.addEventListener('DOMContentLoaded', function() {
+            const chartContainer = document.getElementById('chart');
+            
+            // Create a simple bar chart
+            const chart = document.createElement('div');
+            chart.style.display = 'flex';
+            chart.style.alignItems = 'flex-end';
+            chart.style.height = '100%';
+            chart.style.width = '100%';
+            chart.style.gap = '20px';
+            chart.style.padding = '20px';
+            
+            const categories = ['Research', 'Development', 'Deployment', 'User Experience'];
+            const values = [85, 90, 75, 80];
+            
+            categories.forEach((category, index) => {
+                const bar = document.createElement('div');
+                bar.style.flex = '1';
+                bar.style.display = 'flex';
+                bar.style.flexDirection = 'column';
+                bar.style.alignItems = 'center';
+                
+                const barValue = document.createElement('div');
+                barValue.style.width = '100%';
+                barValue.style.backgroundColor = '#4a6fa5';
+                barValue.style.height = '0';
+                barValue.style.transition = 'height 1s ease-in-out';
+                barValue.style.borderRadius = '5px 5px 0 0';
+                
+                const barLabel = document.createElement('div');
+                barLabel.textContent = category;
+                barLabel.style.marginTop = '10px';
+                barLabel.style.textAlign = 'center';
+                barLabel.style.fontSize = '0.9rem';
+                
+                bar.appendChild(barValue);
+                bar.appendChild(barLabel);
+                chart.appendChild(bar);
+                
+                // Animate bars on load
+                setTimeout(() => {
+                    barValue.style.height = `${values[index]}%`;
+                }, 300 * index);
+            });
+            
+            chartContainer.appendChild(chart);
+        });
+
+        // Add scroll animation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight * 0.75) {
+                    section.style.opacity = '1';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
