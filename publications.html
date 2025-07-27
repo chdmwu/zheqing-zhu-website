@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Zheqing (Bill) Zhu</title>
+    <style>
+        :root {
+            --primary: #2980b9;
+            --secondary: #34495e;
+            --light: #ecf0f1;
+            --hover: #1a6ea8;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        nav ul li a.active {
+            color: var(--primary);
+        }
+        
+        nav ul li a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+        
+        .hero {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .publications {
+            padding: 60px 0;
+        }
+        
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .publication-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .publication-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+        
+        .publication-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .publication-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .publication-desc {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .publication-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .publication-btn:hover {
+            background-color: var(--hover);
+        }
+        
+        .stats {
+            background-color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .stats h2 {
+            margin-bottom: 40px;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: var(--secondary);
+        }
+        
+        .chart-container {
+            margin-top: 40px;
+            height: 300px;
+            position: relative;
+        }
+        
+        .bar {
+            position: absolute;
+            bottom: 0;
+            width: 60px;
+            background-color: var(--primary);
+            transition: height 1s ease;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav {
+                margin-top: 20px;
+                width: 100%;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                margin-left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+                width: 100%;
+            }
+            
+            .nav-menu.active {
+                display: block;
+            }
+            
+            .publications-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+            }
+            
+            .stat-item {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Zheqing (Bill) Zhu</a>
+                <button class="mobile-menu-btn">☰</button>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="achievements.html">Achievements</a></li>
+                        <li><a href="publications.html" class="active">Publications</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Publications</h1>
+            <p>Explore my research contributions in reinforcement learning, contextual bandits, and recommendation systems.</p>
+        </div>
+    </section>
+
+    <section class="publications">
+        <div class="container">
+            <div class="publications-grid">
+                <div class="publication-card">
+                    <div class="publication-content">
+                        <h3 class="publication-title">Pearl - A Production-ready Reinforcement Learning Agent</h3>
+                        <p class="publication-desc">This work presents a reinforcement learning agent designed for real-world applications, emphasizing scalability and efficiency.</p>
+                        <a href="#" class="publication-btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="publication-content">
+                        <h3 class="publication-title">Non-Stationary Contextual Bandit Learning via Neural Predictive Ensemble Sampling</h3>
+                        <p class="publication-desc">Addressing challenges in non-stationary environments, this paper introduces a method to adapt contextual bandit algorithms to changing conditions.</p>
+                        <a href="#" class="publication-btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="publication-content">
+                        <h3 class="publication-title">Offline Reinforcement Learning for Optimizing Production Bidding Policies</h3>
+                        <p class="publication-desc">This research explores the use of offline reinforcement learning to enhance bidding strategies in production environments.</p>
+                        <a href="#" class="publication-btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="publication-content">
+                        <h3 class="publication-title">Optimizing Long-term Value for Auction-Based Recommender Systems via On-Policy Reinforcement Learning</h3>
+                        <p class="publication-desc">Focusing on auction-based recommender systems, this paper discusses strategies to optimize long-term user engagement and value.</p>
+                        <a href="#" class="publication-btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="publication-content">
+                        <h3 class="publication-title">Deep Exploration for Recommendation Systems</h3>
+                        <p class="publication-desc">This study investigates methods for enhancing exploration strategies in recommendation systems to improve user experience and engagement.</p>
+                        <a href="#" class="publication-btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <h2>Publication Metrics</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number" id="citation-count">0</div>
+                    <div class="stat-label">Citations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="publication-count">0</div>
+                    <div class="stat-label">Publications</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="h-index">0</div>
+                    <div class="stat-label">H-index</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="bar" id="bar1" style="left: 100px;"></div>
+                <div class="bar-label" style="left: 100px;">2019</div>
+                
+                <div class="bar" id="bar2" style="left: 220px;"></div>
+                <div class="bar-label" style="left: 220px;">2020</div>
+                
+                <div class="bar" id="bar3" style="left: 340px;"></div>
+                <div class="bar-label" style="left: 340px;">2021</div>
+                
+                <div class="bar" id="bar4" style="left: 460px;"></div>
+                <div class="bar-label" style="left: 460px;">2022</div>
+                
+                <div class="bar" id="bar5" style="left: 580px;"></div>
+                <div class="bar-label" style="left: 580px;">2023</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="#" class="social-link">G</a>
+                    <a href="#" class="social-link">L</a>
+                    <a href="#" class="social-link">T</a>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 Zheqing (Bill) Zhu. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Animate stats counting
+        function animateCount(element, target) {
+            let count = 0;
+            const duration = 2000; // 2 seconds
+            const interval = 50; // Update every 50ms
+            const steps = duration / interval;
+            const increment = target / steps;
+            
+            const timer = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                    clearInterval(timer);
+                    count = target;
+                }
+                element.textContent = Math.floor(count);
+            }, interval);
+        }
+        
+        // Animate chart bars
+        function animateBars() {
+            const heights = [120, 180, 150, 210, 240]; // Heights in pixels
+            const bars = document.querySelectorAll('.bar');
+            
+            bars.forEach((bar, index) => {
+                setTimeout(() => {
+                    bar.style.height = heights[index] + 'px';
+                }, 300 * index);
+            });
+        }
+        
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Start animations when elements are in viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.id === 'citation-count') {
+                            animateCount(document.getElementById('citation-count'), 325);
+                            animateCount(document.getElementById('publication-count'), 15);
+                            animateCount(document.getElementById('h-index'), 8);
+                        } else if (entry.target.id === 'bar1') {
+                            animateBars();
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            observer.observe(document.getElementById('citation-count'));
+            observer.observe(document.getElementById('bar1'));
+        });
+    </script>
+</body>
+</html>
